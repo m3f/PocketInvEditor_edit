@@ -24,15 +24,15 @@ public final class EntitiesInfoActivity extends Activity implements View.OnClick
 
 	private List<Entity> entitiesList;
 
-	private Button apoCowlypseButton;
+	private Button apozombielypseButton;
 
 	public void onCreate(Bundle savedInstanceState)	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.entities_info);
 		entityCountText = (TextView) findViewById(R.id.entities_main_count);
-		apoCowlypseButton = (Button) findViewById(R.id.entities_apocowlypse);
-		if (apoCowlypseButton != null) {
-			apoCowlypseButton.setOnClickListener(this);
+		apozombielypseButton = (Button) findViewById(R.id.entities_apozombielypse);
+		if (apozombielypseButton != null) {
+			apozombielypseButton.setOnClickListener(this);
 		}
 		loadEntities();
 	}
@@ -48,8 +48,8 @@ public final class EntitiesInfoActivity extends Activity implements View.OnClick
 	}
 
 	public void onClick(View v) {
-		if (v == apoCowlypseButton) {
-			apoCowlypse();
+		if (v == apozombielypseButton) {
+			apozombielypse();
 		}
 	}
 
@@ -80,7 +80,7 @@ public final class EntitiesInfoActivity extends Activity implements View.OnClick
 		return builder.toString();
 	}
 
-	public void apoCowlypse() {
+	public void apozombielypse() {
 		List<Entity> list = EditorActivity.level.getEntities();
 		Vector playerLoc = EditorActivity.level.getPlayer().getLocation();
 		int beginX = (int) playerLoc.getX() - 16;
@@ -89,11 +89,11 @@ public final class EntitiesInfoActivity extends Activity implements View.OnClick
 		int endZ = (int) playerLoc.getZ() + 16;
 		for (int x = beginX; x < endX; x += 2) {
 			for (int z = beginZ; z < endZ; z += 2) {
-				Cow cow = new Cow();
-				cow.setLocation(new Vector(x, 128, z));
-				cow.setEntityTypeId(EntityType.COW.getId());
-				cow.setHealth((short) 128);
-				list.add(cow);
+				zombie zombie = new Zombie();
+				zombie.setLocation(new Vector(x, 128, z));
+				zombie.setEntityTypeId(EntityType.ZOMBIE.getId());
+				zombie.setHealth((short) 25);
+				list.add(zombie);
 			}
 		}
 		save(this);
